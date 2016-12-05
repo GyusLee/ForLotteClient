@@ -39,7 +39,7 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 	JButton refresh;
 	JButton make_room;
 	JButton close_window;
-	
+	JButton idea_board;
 	/*RoomInfo[] roomInfos = new RoomInfo[5];
 	
 	
@@ -75,6 +75,9 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		close_window.setPreferredSize(new Dimension(100, 24));
 		close_window.addActionListener(this);
 		
+		idea_board = new JButton("아이디어 게시판");
+		close_window.setPreferredSize(new Dimension(100, 24));
+		
 		p_center = new JPanel();
 		p_list = new JPanel();
 		p_list.setBackground(Color.white);
@@ -82,6 +85,7 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		p_north.add(make_room);	
 		p_north.add(mem_list);
 		p_north.add(refresh);
+		p_north.add(idea_board);
 		p_north.add(close_window);
 		
 		

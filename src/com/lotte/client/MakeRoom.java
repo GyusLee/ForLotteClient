@@ -32,6 +32,9 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.lotte.share.Server;
+
+
 public class MakeRoom extends JFrame implements ActionListener, ItemListener{
 
 	JLabel l_title, l_ispw, l_pw, l_max;
@@ -146,10 +149,6 @@ public class MakeRoom extends JFrame implements ActionListener, ItemListener{
 		setVisible(openflag);
 	}
 
-	public ImageIcon createImage(String path){
-		return new ImageIcon(this.getClass().getClassLoader().getResource(path));
-	}
-	
 	public void checkCreateRoom() {
 		String isPw = null;
 		String maxPeople = null;

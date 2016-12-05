@@ -24,6 +24,7 @@ import org.json.simple.parser.ParseException;
 
 import com.lotte.client.ClientThread;
 import com.lotte.client.WaitingRoom;
+import com.lotte.share.Server;
 
 public class ClientMain extends JFrame implements ActionListener {
 
@@ -42,7 +43,8 @@ public class ClientMain extends JFrame implements ActionListener {
 	String host_ip;
 
 	public ClientThread clientThread;
-
+	public ChatClient chatClient;
+	
 	WaitingRoom waitingRoom;
 	StringBuffer sb = new StringBuffer();
 
@@ -187,6 +189,18 @@ public void result(String response){
 					
 				} else if (jsonObject.get("success").equals("false")) {
 					JOptionPane.showMessageDialog(waitingRoom, "접속자 목록 불러오기 실패");
+				}
+			}
+			else if (jsonObject.get("response").equals("create_room")){
+				JSONObject obj=(JSONObject)jsonObject.get("data");
+				if(obj.get("success").equals("true")){
+					
+					host_ip = (String)obj.get("host_ip");
+					Server sub_server = new Server(host_ip,this);
+					chatClient=new ChatClient(this, 1);
+					waitingRoom.setVisible(false);
+				}else {
+					JOptionPane.showMessageDialog(waitingRoom, "");
 				}
 			}
 			
