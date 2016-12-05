@@ -41,7 +41,8 @@ public class ClientThread extends Thread{
 	public void listen() {
 		try {
 			String response = buffr.readLine();
-			//clientMain.result(response);
+			System.out.println(response);
+			clientMain.result(response);
 		} catch (IOException e) {
 			System.out.println("[ Debug ] : Error on Buffer Listener");
 		}

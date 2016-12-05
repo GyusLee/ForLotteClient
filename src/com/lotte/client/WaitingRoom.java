@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -40,12 +41,13 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 	JButton close_window;
 	
 	/*RoomInfo[] roomInfos = new RoomInfo[5];
-	MemberList memberList;
-	MakeRoom makeRoom;
-	ShowMessgeDL showmsg;*/
 	
-	Thread th;
+	
+	*/
 	/*RoomInfo roomInfo;*/
+	MakeRoom makeRoom;
+	MemberList memberList;
+	Thread th;
 	int cnt=0;
 	StringBuffer sb = new StringBuffer();
 	public boolean flag=true;
@@ -75,6 +77,7 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		
 		p_center = new JPanel();
 		p_list = new JPanel();
+		p_list.setBackground(Color.white);
 		
 		p_north.add(make_room);	
 		p_north.add(mem_list);
@@ -85,7 +88,10 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		//getRoomList();
 		
 		p_center.add(p_list);
-		scroll = new JScrollPane(p_center);
+		scroll = new JScrollPane(p_center,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setBackground(Color.white);
+		p_center.setBackground(Color.white);
 		setLayout(new BorderLayout());
 		
 		add(p_north, BorderLayout.NORTH);
@@ -102,19 +108,16 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		th.start();*/
 		
 		
-		//memberList = new MemberList(this.clientMain, this);
-		//makeRoom = new MakeRoom(this.clientMain, this);
-		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				//disConnection();
+				disConnection();
 			}
 
 		});
 
 	}
 	
-	/*
+	
 	public void disConnection(){
 		sb.delete(0, sb.length());
 		sb.append("{\"request\" : \"disconnect\",");
@@ -124,6 +127,7 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		clientMain.clientThread.sendMsg(sb);
 	}
 	
+	/*
 	public void getRoomList(){
 		//��񿡼� �� ��� ��������
 		sb.delete(0, sb.length());
@@ -157,6 +161,7 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		p_list.updateUI();
 	}
 	
+	*/
 	public void showConnector(){
 		sb.delete(0, sb.length());
 		sb.append("{\"request\" : \"showconnector\",");
@@ -167,10 +172,9 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		memberList.table.updateUI();
 		
 	}
-	*/
 	
 	public void actionPerformed(ActionEvent e) {
-		/*p_north.updateUI();
+		p_north.updateUI();
 		p_north.repaint();
 		
 		if(e.getSource() == mem_list){
@@ -196,32 +200,16 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 				makeRoom.setVisible(false);
 				makeRoom.openflag = true;
 			}
-		}else if(e.getSource()==refresh){
-			refresh();
 		}
-	
-		
+		/*else if(e.getSource()==refresh){
+			refresh();
+		}*/
 		else if (e.getSource() == close_window){
-			URL url = getClass().getClassLoader().getResource("bell.png");
-			ShowMessgeDL.makeFrame(this, "�����Ͻðڽ��ϱ�?", url);
-		
-			if(flag){
-				Thread thread = new Thread(){
-					public void run() {
-						while (flag) {
-							System.out.print("");
-						}
-						int result = ShowMessgeDL.getResult();
-						
-							if(result == 0){
-								disConnection();
-							}
-					}
-				};
-				thread.start();
+			int result = JOptionPane.showConfirmDialog(null, "종료하시겠습니까?", "프로그램 종료", JOptionPane.YES_NO_OPTION);
+			if(result == 0){
+				disConnection();
 			}
 		}
-	*/
 	}
 	
 	
@@ -249,36 +237,6 @@ public class WaitingRoom extends JFrame implements ActionListener /*Runnable*/{
 		
 		
 	}
-	public void mouseClicked(MouseEvent e) {
-
-		p_north.updateUI();
-		p_north.repaint();
-		
-	}
-
-	public void mouseEntered(MouseEvent e) {
-
-		p_north.updateUI();
-		p_north.repaint();
-		
-	}
-
-	public void mouseExited(MouseEvent e) {
-		p_north.updateUI();
-		p_north.repaint();
-		
-	}
-
-	public void mousePressed(MouseEvent e) {
-		p_north.updateUI();
-		p_north.repaint();
-		
-	}
-
-	public void mouseReleased(MouseEvent e) {
-		p_north.updateUI();
-		p_north.repaint();
-		
-	}*/
+	*/
 
 }
